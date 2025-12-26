@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Manage Member - Gym management</title>
+        <link rel="stylesheet" href="style.css">
+        </head>
+        <body class="dashboard-body">
+            <header class="topbar">
+                <h2>Manage Members</h2>
+                <nav>
+                    <a href="admin-dashboard.html" class="logout-btn" style="background: #16a34a;">Back</a>
+                    <a href="index.html" class="logout-btn">Logout</a>
+                    </nav>
+                    </header>
+
+                    <main class="form-wrapper">
+                        <div class="member-search">
+                            <input id="searchText" type="text" placeholder="search by name or phone">
+                            <button class="primary-btn" onclick="renderMembers()">Search</button>
+                            </div>
+
+                            <table class="member-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Phone</th>
+                                        <th>Plan</th>
+                                        <th>Fee</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="memberBody">
+                                            </tbody>
+                                            </table>
+
+                                            <p id="manageMsg" class="msg"></p>
+                                            </main>
+                                            <script src="app.js"></script>
+                                            </body>
+                                            </html>
+                                            

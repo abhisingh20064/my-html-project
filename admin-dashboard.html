@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Admin Dashboard - Gym Management</title>
+        <link rel="stylesheet" href="style.css">
+        </head>
+        <body class="dashboard-body">
+            <header class="topbar">
+                <h2>Admin Dashboard</h2>
+                <a href="#" class="logout-btn" onclick="handleLogout()">Logout</a>
+                </header>
+
+                <main class="dashboard">
+                     <section class="card">
+                                        <h3>Members</h3>
+                                        <a href="add-member.html">Add Member</a>
+                                        <a href="manage-member.html">Update / Delete Member</a>
+                                        </section> 
+                        <section class="card">
+                            <h3>Billing</h3>
+                            <a
+                            href="create-bill.html">Create Bills</a>
+                            <a
+                            href="assign-fee.html">Assign Fee Package</a>
+                            </section>
+
+                            <section class="card">
+                                <h3>Notification</h3>
+                                <a
+                                href="assign-notify.html">Assign Monthly Notification</a>
+                            </section>
+
+                            <section class="card">
+                                <h3>Reports</h3>
+                                <a
+                                href="admin-reports.html">Reports Export</a>
+                                </section>
+
+                                <section class="card">
+                                    <h3>Store & Diet</h3>
+                                    <a
+                                    href="supplement-store.html">Supplement Store</a>
+                                    <a href="diet-details.html">Diet Details</a>
+                                    </section>
+                                       
+                                    </main>
+                                    <script>// if not logged in, redirect to login
+                                    if
+                                    (localStorage.getItem("isAdminLoggedIn") !== "true") { <!-- [web:102] -->
+                                        window.location.href =
+                                        "admin-login.html";
+                                    }
+                                        
+                                        function handleLogout() {
+                                            //login flag hata do //
+                                            localStorage.removeItem("isAdminLoggedIn");
+                                            //login page bhejo//
+                                            window.location.href = 
+                                            "admin-login.html";
+                                        }
+                                        if
+                                        (sessionStorage.getItem("memberLoggedIn") !== "true"){
+                                            window.location.href = 
+                                            "user-login.html";
+                                        }
+                                        function handleLogout() {
+                                            sessionStorage.removeItem("memberLoggedIn");
+                                            sessionStorage.removeItem("memberId");
+                                            sessionStorage.removeItem("memberName");
+                                            window.location.href = "user-login.html";
+                                        }
+                                        
+                                    </script>
+                                    </body>
+                                    </html>

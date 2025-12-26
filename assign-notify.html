@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assign Notification</title>
+    <style>
+        body { font-family: Arial, sans-serif; background:#111; color:#fff; }
+        .page { max-width:900px; margin:20px auto; }
+        select, input, textarea { width:100%; margin:8px 0; padding:8px; }
+        button { padding:8px 16px; background:#007bff; color:#fff; border:none; cursor:pointer; }
+        #status { margin-top:10px; }
+        .success { color:lightgreen; }
+        .error { color:#ff6b6b; }
+    </style>
+</head>
+<body>
+<div class="page">
+    <h2>Assign Notification</h2>
+
+    <!-- back link -->
+    <a href="admin-dashboard.html" style="color:#0af;">Back</a>
+
+    <!-- member select -->
+    <label for="selectMember">Select member</label>
+    <select id="selectMember">
+        <option value="">Select member</option>
+    </select>
+
+    <!-- title -->
+    <label for="notifyTitle">Title</label>
+    <input type="text" id="notifyTitle" placeholder="e.g. Monthly Fee Reminder">
+
+    <!-- message -->
+    <label for="notifyMessage">Message</label>
+    <textarea id="notifyMessage" rows="3" placeholder="write notification message"></textarea>
+
+    <!-- button -->
+    <button id="btnSendNotification" onclick="handleSendNotification()">
+        Send Notification (Demo)
+    </button>
+
+    <!-- status text -->
+    <div id="status"></div>
+</div>
+
+<script>
+    // demo data
+    const demoMembers = [
+        { id: "1", name: "Abhishek Singh" },
+        { id: "2", name: "Rahul Kumar" }
+    ];
+
+    const demoNotifications = [];
+
+    // dropdown fill
+    function loadNotifyMembers() {
+        const sel = document.getElementById('selectMember');
+        demoMembers.forEach(m => {
+            const opt = document.createElement('option');
+            opt.value = m.id;
+            opt.textContent = m.name;
+            sel.appendChild(opt);
+        });
+    }
+
+    function showStatus(msg, type) {
+        const el = document.getElementById('status');
+        el.textContent = msg;
+        el.className = type;
+    }
+
+    function handleSendNotification() {
+        const memberId = document.getElementById('selectMember').value;
+        const title = document.getElementById('notifyTitle').value.trim();
+        const message = document.getElementById('notifyMessage').value.trim();
+
+        if (!memberId || !title || !message) {
+            showStatus('Please select member, title aur message likho.', 'error');
+            return;
+        }
+
+        demoNotifications.push({
+            memberId,
+            title,
+            message,
+            created: new Date().toISOString()
+        });
+
+        showStatus('Notification sent (demo only).', 'success');
+        console.log(demoNotifications);
+    }
+
+    // page load
+    loadNotifyMembers();
+</script>
+<script>
+    // if not logged in, redirect to login
+    if 
+    (localStorage.getItem("isAdminLoggedIn")!== "true") { <!-- [web:102] --> 
+        window.location.href = 
+        "admin-login.html";
+    }
+</script>
+</body>
+</html>

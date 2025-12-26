@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta  charset="UTF-8">
+        <title>Create Bill - Gym Management</title>
+        <link rel="stylesheet" href="style.css">
+        </head>
+        <body class="dashboard-body">
+            <header class="topbar">
+                <h2> Create Bill</h2>
+                <nav>
+                    <a href="admin-dashboard.html" class="logout-btn" style="background: #16a34a;">Back</a>
+                    <a href="index.html" class="logout-btn">Logout</a>
+                    </nav>
+                    </header>
+
+                    <main class="form-wrapper">
+                        <form class="member-form" onsubmit="return false;">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Select Member</label>
+                                    <select id="b_member">
+                                        </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Fee Package</label>
+                                            <select id="b_plan">
+                                                <option value="monthly">monthly</option>
+                                                <option value="quarterly">Quarterly</option>
+                                                <option value="yearly">Yearly</option>
+                                                </select>
+                                                </div>
+                                                </div>
+
+                                                <div class="form-row">
+                                                    <div class="form-group">
+                                                        <label>Amount ($)</label>
+                                                        <input id="b_amount" type="number" min="0"  placeholder="e.g. 1500">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label>Due Date</label>
+                                                            <input id="b_due" type="date">
+                                                            </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label>Status</label>
+                                                                <select id="b_status">
+                                                                    <option value="unpaid">Unpaid</option>
+                                                                    <option value="paid">Paid</option>
+                                                                    </select>
+                                                                    </div>
+
+                                                                    <button class="btn" type="button" onclick="createBill()">Create Bill (Demo)</button>
+                                                                    <p id="b_msg" class="msg"></p>
+                                                                    
+                                                                    </form>
+                                                                    <h2 style="margin-top: 24px;">Recent Bills (Demo)</h2>
+                                                                    <table class="member-table">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Name</th>
+                                                                                <th>Amount</th>
+                                                                                <th>Due Date</th>
+                                                                                <th>Status</th>
+                                                                                </tr>
+                                                                                </thead>
+                                                                                <tbody id="billListBody"></tbody>
+                                                                                </table>
+                                                                    </main>
+
+                                                                    <script src="app.js"></script>
+                                                                    </body>
+                                                                    </html>
+                                                                    

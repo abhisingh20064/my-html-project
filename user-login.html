@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Member Login - Gym </title>
+        <style>
+            body { font-family: Arial,sans-serif; background:#111; color:#fff;}
+            .box  {width:320px; margin:80px auto; padding: 20px; background: #181818; border-radius: 4px;} 
+            input { width:100%; padding: 8px; margin: 8px 0;}
+            button {width: 100%; padding: 8px; background: #007bff; border: none; color: #fff; cursor: pointer;}
+            button:hover
+            {background: #005fcc;}
+            #msg { margin-top: 8px; color: #ff6b6b; font-size: 13px;}
+            </style>
+            </head>
+            <body>
+            <div class="box">
+                <h2>Member Login</h2>
+                <input type="text"  id="memberId" placeholder="member Id">
+                <input type="password" id="password" placeholder="Password">
+                <button 
+                onclick="handleUserLogin()">Login</button>
+                <div id="msg"></div>
+                </div>
+<script>
+const demoMembers = [
+    { id: "M001", name: "Abhishek Singh", password: "12345" },
+    { id: "M002", name: "Rahul Kumar", password: "12345" }
+];
+
+function handleUserLogin() {
+    const id  = document.getElementById('memberId').value.trim();
+    const pw  = document.getElementById('password').value.trim();
+    const msg = document.getElementById('msg');
+
+    if (!id || !pw) {
+        msg.style.color = "#ff6b6b";
+        msg.textContent = "Enter Member ID and Password.";
+        return;
+    }
+    console.log("ID:", id);
+    console.log("PW:", pw);
+    console.log("ARR:", demoMembers);
+
+    const found =
+    demoMembers.find(function(m) {
+        return m.id === id && 
+    m.password === pw;
+    });
+    console.log("FOUND:", found);
+
+    if (found) {
+        alert("FOUND:" + found.id);
+        sessionStorage.setItem("memberLoggedIn", "true");
+        sessionStorage.setItem("memberId", found.id);
+        sessionStorage.setItem("memberName", found.name);
+
+        msg.style.color = "lightgreen";
+        msg.textContent = "Login successful, redirecting...";
+
+        setTimeout(function () {
+            window.location.href = "admin-dashboard.html";
+        }, 800);
+    } else {
+        msg.style.color = "#ff6b6b";
+        msg.textContent = "Invalid Member Id or Password.";
+    }
+}
+
+</script>
+                </body>
+                </html>

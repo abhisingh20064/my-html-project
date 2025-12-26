@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplement Store</title>
+    <style>
+        body { font-family: Arial, sans-serif; background:#111; color:#fff; }
+        .page { max-width: 1000px; margin:20px auto; }
+        a { color:#0af; }
+        h2 { margin-bottom:5px; }
+        table { width:100%; border-collapse:collapse; margin-top:10px; }
+        th, td { border:1px solid #444; padding:6px 8px; font-size:14px; }
+        th { background:#222; }
+        button { padding:6px 10px; margin-top:8px; background:#007bff; border:none; color:#fff; cursor:pointer; font-size:13px; }
+        button:hover { background:#005fcc; }
+    </style>
+</head>
+<body>
+<div class="page">
+    <h2>Supplement Store</h2>
+    <a href="admin-dashboard.html">Back</a>
+
+    <table id="tblSupplements">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Product</th>
+            <th>Type</th>
+            <th>Price (₹)</th>
+            <th>Stock</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <button onclick="exportTableToCSV('supplements.csv', 'tblSupplements')">
+        Download Store CSV
+    </button>
+</div>
+
+<script>
+    const demoSupplements = [
+        { id: 'S001', name: 'Whey Protein 1kg', type: 'Protein', price: 1800, stock: 15 },
+        { id: 'S002', name: 'Creatine 300g',    type: 'Strength', price: 900,  stock: 10 },
+        { id: 'S003', name: 'BCAA 250g',       type: 'Recovery', price: 750,  stock: 8 }
+    ];
+
+    function renderSupplements() {
+        const tbody = document.querySelector('#tblSupplements tbody');
+        tbody.innerHTML = '';
+        demoSupplements.forEach(p => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${p.id}</td>
+                <td>${p.name}</td>
+                <td>${p.type}</td>
+                <td>${p.price}</td>
+                <td>${p.stock}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function exportTableToCSV(filename, tableId) {
+        const table = document.getElementById(tableId);
+        let csv = [];
+        for (let i = 0; i < table.rows.length; i++) {
+            let row = [], cols = table.rows[i].querySelectorAll('th, td');
+            for (let j = 0; j < cols.length; j++) {
+                let text = cols[j].innerText.replace(/"/g, '""');
+                row.push('"' + text + '"');
+            }
+            csv.push(row.join(','));
+        }
+        const csvString = csv.join('');
+        const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+        const url  = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    renderSupplements();
+</script>
+
+<script>
+    // if not logged in, redirect to login
+    if 
+    (localStorage.getItem("isAdminLoggedIn")!== "true") { <!-- [web:102] --> 
+        window.location.href = 
+        "admin-login.html";
+    }
+</script>
+</body>
+</html>

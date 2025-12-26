@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diet Details</title>
+    <style>
+        body { font-family: Arial, sans-serif; background:#111; color:#fff; }
+        .page { max-width: 900px; margin:20px auto; }
+        a { color:#0af; }
+        h2 { margin-bottom:5px; }
+        table { width:100%; border-collapse:collapse; margin-top:10px; }
+        th, td { border:1px solid #444; padding:6px 8px; font-size:13px; }
+        th { background:#222; }
+        select { padding:5px 8px; margin-top:8px; }
+    </style>
+</head>
+<body>
+<div class="page">
+    <h2>Diet Details</h2>
+    <a href="admin-dashboard.html">Back</a>
+
+    <div style="margin-top:10px;">
+        <label for="planType">Select Plan:</label>
+        <select id="planType" onchange="renderDiet()">
+            <option value="weightLoss">Weight Loss</option>
+            <option value="muscleGain">Muscle Gain</option>
+        </select>
+    </div>
+
+    <table id="tblDiet">
+        <thead>
+        <tr>
+            <th>Meal</th>
+            <th>Time</th>
+            <th>Items</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script>
+    const dietPlans = {
+        weightLoss: [
+            { meal: 'Morning',   time: '7:00 AM', items: 'Lukewarm water + lemon, 5 soaked almonds' },
+            { meal: 'Breakfast', time: '8:30 AM', items: 'Oats + milk, 1 banana' },
+            { meal: 'Lunch',     time: '1:00 PM', items: '2 chapati, dal, salad' },
+            { meal: 'Snack',     time: '5:00 PM', items: 'Green tea, roasted chana' },
+            { meal: 'Dinner',    time: '8:30 PM', items: '1 chapati, sabzi, salad' }
+        ],
+        muscleGain: [
+            { meal: 'Morning',   time: '7:00 AM', items: 'Warm water, 5 almonds + 2 walnuts' },
+            { meal: 'Pre-workout', time: '8:00 AM', items: 'Banana + black coffee' },
+            { meal: 'Post-workout', time: '10:00 AM', items: '4 egg whites / paneer + brown bread' },
+            { meal: 'Lunch',     time: '2:00 PM', items: 'Rice, dal, paneer/chicken, salad' },
+            { meal: 'Dinner',    time: '9:00 PM', items: 'Chapati, sabzi, curd' }
+        ]
+    };
+
+    function renderDiet() {
+        const type = document.getElementById('planType').value;
+        const data = dietPlans[type];
+        const tbody = document.querySelector('#tblDiet tbody');
+        tbody.innerHTML = '';
+
+        data.forEach(row => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${row.meal}</td>
+                <td>${row.time}</td>
+                <td>${row.items}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    renderDiet();
+</script>
+
+<script>
+    // if not logged in, redirect to login
+    if 
+    (localStorage.getItem("isAdminLoggedIn")!== "true") { <!-- [web:102] --> 
+        window.location.href = 
+        "admin-login.html";
+    }
+</script>
+</body>
+</html>

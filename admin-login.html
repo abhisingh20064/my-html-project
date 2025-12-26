@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; background:#111; color:#fff; }
+        .box { width:320px; margin:80px auto; padding:20px; background:#181818; border-radius:4px; }
+        input { width:100%; padding:8px; margin:8px 0; }
+        button { width:100%; padding:8px; background:#007bff; border:none; color:#fff; cursor:pointer; }
+        button:hover { background:#005fcc; }
+        #msg { margin-top:8px; color:#ff6b6b; font-size:13px; }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h2>Admin Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="handleLogin()">Login</button>
+    <div id="msg"></div>
+</div>
+
+<script>
+    // fixed demo admin credentials
+    const ADMIN_USER = "abhishek";
+    const ADMIN_PASS = "abhi9670";
+    
+    function handleLogin() {
+        const u = document.getElementById('username').value.trim();
+        const p = document.getElementById('password').value.trim();
+        const msg = document.getElementById('msg');
+
+        if (!u || !p) {
+            msg.textContent = "Enter username and password.";
+            return;
+        }
+
+        if (u === ADMIN_USER && p === ADMIN_PASS) {
+            // store login flag
+            localStorage.setItem("isAdminLoggedIn", "true");  // [web:102][web:121]
+            msg.style.color = "lightgreen";
+            msg.textContent = "Login successful, redirecting...";
+
+            setTimeout(function () {
+                window.location.href = "admin-dashboard.html";
+            }, 800);
+        } else {
+            msg.style.color = "#ff6b6b";
+            msg.textContent = "Invalid credentials.";
+        }
+    }
+</script>
+</body>
+</html>
